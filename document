@@ -1,0 +1,530 @@
+findInterval {base}
+Description
+给定一个非递减断点的向量vec,
+找到包含x每个元素的区间。
+例如，i<-findInterval(x,v)，
+对于x中的每个索引j，
+有v_{i_j}<=x_{j}<v_{i_j+1}
+(v_0=−∞, v_{N+1}=+∞, and N <- length(v))
+在两个边界上，返回的索引可能相差1，
+取决于可选参数rightmost.closed
+和all.inside。
+Details
+在另一个向量vec中找到x的索引，
+后者必须是非递减的。
+
+
+approxfun{stats}
+插值函数
+Description
+返回一个点列表，这些点线性插值给定数据点，
+或执行线性或恒定插值的函数。
+Arguments
+x,y 给定插值点的坐标的数值向量。
+或者指定一个绘图结构。
+xout 指定插值地点的一组可选数值。
+n 不指定xout，插值发生在跨越区间
+[min(x),max(x)]的n个等距点上。
+method 指定的插值方法，
+可选项为'linear'、'constant'。
+yleft 当输入x值小于min(x)返回的值。
+默认值由下面给出的rule值定义。
+yright 当输入x值大于max(x)返回的值。
+默认值由下面给出的rule值定义。
+rule 长度为1或2的整数描述在间隔
+[min(x),max(x)]之外如何插值
+如果rule=1，这样的点返回NA，
+如果rule=2，使用壁橱数据极端值。
+如果左右外推法不同，使用rule=2:1。
+f 对于method = 'constant'，
+包含一个介于0和1之间的数，
+指示左右连续步函数之间的折衷。
+当y0和y1是点的左右值，
+如果f==0，点值为y0，
+如果f==1，点值为y1，
+如果f为中间值，点值为y0*(1-f)+y1*f
+这样，f==0则右连续，f==1则左连续，
+即使y值非有限。
+ties 处理绑定x值。字符串'ordered'
+或函数(或函数名)接受单个向量参数，
+并返回单个数字或两者的list，例如，
+list=('ordered',mean),见'Details'。
+na.rm 逻辑上指定如何处理缺失值(NA's)。
+设置na.rm=FALSE将传播NA’s到插值y，
+也取决于rule集。
+注意，在本例中，x中的NA's无效，
+见实例。
+Details
+该输入可以包含被删除的缺失值
+(当na.rm=TRUE，默认情况下)，
+所以至少需要2个完整的(x,y)对
+(当method='linear',至少有1个)。
+如果有重复绑定的x值和绑定包含一个函数，
+它将应用于每个不同x值对应的y值，
+产生具有唯一x的(x,y)对。
+当ties='ordered',这些x值被假定是有序的，
+唯一的，绑定不会被检查，
+但如果存在绑定就保留绑定。
+这是大的length(x)的最快选择。
+当ties是长度2的list，tie[[2]]必须
+是一个应用于绑定的函数，
+但如果ties[[1]]=='ordered'，
+假定这些值是排序的，只检查是否有
+绑定。
+第一个y用于左边的插值，
+最后一个用于右边的插值。
+它创建时使用了环境中的数据，
+它的细节可能发生变化。
+Value
+approx返回一个包含组件x和y的列表，
+其中包含根据方法或规则对给定数据点
+进行插值的n个坐标点。
+approxfun函数返回执行给定数据点的
+线性或恒定插值函数。
+对于给定的x值集，这个函数返回
+相应的插值。
+
+splinefun {stats}
+插值样条
+Description
+对给定的数据点进行三次样条插值或Hermite插值
+，返回插值得到的点列表或执行插值的函数。
+
+aes {ggplot2}
+构造美学映射
+Description
+美学映射描述了数据中的变量如何映射到
+geom的视觉美学属性。
+
+ggplot {ggplot2}
+创建一个新的ggplot
+Description
+ggplot()初始化一个ggplot对象。
+它可以用于声明图形的输入框架并指定一组
+用于所有后续层的常见图形美学，
+除非明确重写。
+Arguments
+data 用于绘图的默认数据集。
+
+data.frame {base}
+数据框
+函数data.frame()创建数据框，
+包含了矩阵和列表的许多属性变量的
+紧密耦合集合，被用作大多数R建模软件
+的基本数据结构。
+Arguments
+... 这些参数要么是值(value)，
+要么是标签等于值(tag=value)。
+标签存在即基于标签创建组件名称，
+否则分离参数创建组件名称。
+row.names 空值(NULL)或单个整数或指定
+作为行名使用的列字符字符串，
+或为数据框提供列名的字符型或
+整数型向量。
+check.rows 为真时，检查长度和名称的一致性。
+check.names 逻辑值。为真时检查数据框中的
+变量名称，确保它们是语法上有效的变量名称，
+而且不会重复。如果有必要，
+它们由make.names调整，以便它们是这样的。
+fix.empty.names 逻辑指示'未命名'
+(在不被正式称为someName=arg的意义上说)，
+确切地说，命名为''的参数自动生成名称。
+如果''名称需要保留，即使check.names为false，
+该参数也要设置为FALSE。
+stringsAsFactors 逻辑值
+,字符向量应该转换为因子吗?
+Details
+数据框是具有唯一行名的，
+相同行数的变量的列表。
+
+faithful {datasets}
+老忠实泉的喷泉数据
+Description
+美国怀尔明州国家黄石公园老忠实泉爆发持续时间
+和等待时间
+
+B_06_levelplot {lattice}
+Description
+画平面图和等值线图。
+Arguments
+x 对于formula方法， z ~ x * y | g1 * g2 * ...
+形式的公式，此处z是数值响应变量，
+x, y是矩阵网格上计算的数值。
+
+C_07_shingles {lattice}
+Description
+处理shingles的功能。
+
+B_00_xyplot {lattice}
+常见的二元lattice图
+Description
+这个帮助页记录了几个常用的高水平
+点阵函数。
+xyplot产生二元散点图或时间序列图。
+bwplot产生盒须图。
+dotplot产生克利夫兰点图。
+barchart产生柱状图。
+stripplot产生一维散点图。
+所有这些函数以及其他高水平
+控制函数，以一致的方式响应
+控制条件、布局、高宽比、图例、
+轴注释和许多其他细节的一般参数集。
+这些参数在此帮助页面被详细描述，
+也应该作为其他高级函数的引用。
+为了控制和定制每个面板的实际显示，
+各自默认面板的帮助页面通常提供了
+更多的信息。特别地，
+这些帮助页面描述了调用高水平函数
+通常使用的许多参数，但它们是特定的。
+Arguments
+x lattice包中的所有高水平函数是通用的。
+x是方法分派的对象。
+对于'formula'方法，x必须是一个公式，
+用于描述每个面板显示的主要变量和
+可选的条件变量，这些变量描述了在图中
+不同面板绘制的子集。
+条件作用在下面的'Details'部分描述。
+对于这里记录的函数，公式通常是y ~ x | g1 * g2 * ...
+(等价于y ~ x | g1 * g2 * ...)的形式，
+指示x, y对应的图应该以变量g1, g2, ...
+为条件生成。这里x,y是主要变量，
+g1, g2, ...是条件变量。
+给出y ~ x的形式公式，条件变量可以省略，
+在这种情况下，图将由一个完整数据的面板组成。
+这个公式也可以包含表达式(例如sqrt(), log()等
+)，了解公式中术语的评估，见下面的data 
+Arguments。
+除了xyplot，这里记录的函数也支持
+~ x | g1 * g2 *...形式的公式。
+在这种情况下，如果x被命名，y默认是name(x)，
+否则将是一个单水平因子。
+x不是公式的情况下是通过适当方法处理的。
+numeric方法相当于没有左手边和没有条件变量的
+调用。对于柱状图和点阵图，存在表和数组的
+非平凡方法，见barchart.table。
+
+B_02_barchart.table {lattice}
+柱状图和点图的表方法
+Description
+列联表经常使用条形图和点图显示。
+这些方法直接在表上操作，绕过将他们转化为
+数据框架的需要，以便于与公式接口一起使用。
+矩阵和数组通过强制转换到列联表来支持。
+Arguments
+x 一个表、数组、矩阵对象。
+data 不应该指定。指定后将会被警告忽略。
+groups 一个逻辑标志，指示是否使用最后一个维度
+作为显示中的分组变量。
+
+
+F_1_panel.barchart {lattice}
+Description
+柱状图的默认面板功能。
+Arguments
+x 柱的范围。默认情况下，条从面板的左边开始，
+除非指定了origin，这样的话它们从那里开始。
+y 柱的水平位置。可能是一个因子。
+box.ratio 柱宽和柱间空间的比值。
+box.width 在绝对单位上柱的厚度。当分类变量
+不是一个因子时，用于指定柱的厚度，单靠
+box.ratio无法达到比1更厚的厚度。
+horizontal 一个逻辑标志。FALSE时，图的颠倒是
+交换x, y的行为意义上的。x现在是'因子'，
+其他参数的解读也会相应地变化。
+参阅bwplot的文档以获得更全面的解读。
+stack 逻辑值，与组非空相关。 为负时， 
+不同值的分组变量是并排绘制的，
+反之它们是堆积的。
+
+
+H_barley {lattice}
+明尼苏达州的大麦实验。
+Description
+两年10个品种，6个地点的总产量(单位:蒲式耳)
+1 bushel = 8 gallons
+1 gallon = 4.546 liters(UK)
+1 gallon = 3.785 liters(USA)
+Format
+4个变量120个观察值的数据框。
+yield 三块样地的平均产量(bushel/acre)
+1 acre = 4046.86 square meter
+variety '天鹅塔', '462号', '满洲', '475号', 
+'天鹅绒', '泥潭地', 羽翼', '457号', '威斯康星38号', 
+'特雷比'水平的因子(10个)
+year 1931, 1932水平的因子
+site 6个水平的因子:
+'大急流城(美国密歇根州西南部)', '杜鲁斯
+(美国明尼苏达州东北部)', 
+'大学农场', '莫里斯', '克鲁克斯顿',
+'沃西卡'。
+
+F_1_panel.dotplot {lattice}
+Description
+点阵图的默认面板。
+
+
+D_trellis.object {lattice}
+格子图对象
+Description
+这类对象由高层点阵函数返回，
+通常是用它的print方法绘制的。
+
+Titanic {datasets}
+泰坦尼克号旅客的生存情况。
+Description
+本数据集提供了关于泰坦尼克号致命处女航中的
+旅客命运信息。
+根据经济状况(舱位), 性别, 年龄
+和生存情况概述。
+
+mosaicplot {graphics}
+Description
+在当前的图形设备上画马赛克图
+x 数组形式的连续表，具有指定dimnames(x)属性的
+可选分类标签。表最好由table()命令创建。
+
+table {base}
+交叉制表和创建表
+Description
+table使用交叉分类因素在每一个因子水平的
+组合中建立一个列联表。
+Arguments
+... 一个或多个可以被解释为因子的对象
+(包括数字和字符串)，
+或者是一个组件可被解释的list
+(例如一个数据框)。
+对于as.table，传递参数到特殊方法，
+对于as.data.frame，则不用传递参数
+到特殊方法。
+exclude ...中所有要移除的因子水平。
+如果它不包含NA并且不指定useNA，
+意味着useNA = "ifany"。它对
+非因子参数的解释见'Details'。
+useNA 是否将NA纳入表格。
+可以简写，见'Details'。
+dnn 结果中给维度的名称。
+(dimnames的名称)
+deparse.level 控制dnn的默认构造方式。
+见'Details'。
+x 一个任意的R对象，或者一个从'table'类
+用as.data.frame方法继承的对象。
+注意as.data.frame.table(x, *)可能会
+对非表x显式调用重组数组。
+row.names 给出数据框行名的一个字符串向量。
+responseName 表项目使用的列名，
+通常是数。
+stringsAsFactors 逻辑值。分组的因子应返回为
+因子(默认)，还是字符串?
+sep, base 传递给provideDimnames。
+
+contour {graphics}
+显示等高线。
+Description
+创建等高线图，或者在原始图形上添加等高线
+
+outer {base}
+数组的外积
+a%o%a == matrix(a)%*%t(matrix(a))
+outer(a,a,FUN = '/')[i,j] == a[i]/a[j]
+Description
+数组X和Y的外积是维度c(dim(X), dim(Y))
+的数组A。
+
+image {graphics}
+显示彩色图像
+Description
+创建一个颜色与z值对应的彩色或灰度的矩形网格。
+这可以用来显示三维或空间数据，也就是图像。
+这是一个通用函数。
+注意: 网格默认用一组矩形绘制。
+将网格绘制为光栅图像见参数useRaster。
+hcl.colors提供了一个范围广的连续
+调色板，给出n个需要的颜色数字，
+适合显示有序变量。
+Arguments
+x, y 所测z值的网格线的位置。
+必须是有限的、非缺失的、严格上升序列。
+
+dimnames {base}
+Description
+检索或设置对象的dimnames
+
+row+colnames {base}
+检索或设置类矩阵对象的行名或列名。
+
+matrix {base}
+Usage
+matrix(data = NA, nrow = 1, ncol = 1, 
+byrow = FALSE, dimnames = NULL)
+
+st_read {sf}
+Description
+从文件或数据库中读取简单的特征，
+或检索层名称和它们的几何类型。
+直接通过数据库索引(DBI)或RPostgreSQL接口
+读取PostGIS表，覆盖已知的二进制几何对象到
+sfc。
+Arguments
+dsn 数据源名称(解释因驱动而异，
+对于一些驱动,dsn是一个文件名称，
+但也可能是文件夹，或数据库的名称和
+访问资格)。假设是GeoJSON,dsn可能是
+持有geojson数据的字符字符串。它也
+可以是开放的数据库连接。
+quiet 逻辑值。
+抑制名字、驱动、大小和空间参考、
+信号不和多层信息。
+
+mtcars {datasets}
+Description
+数据来自1974年的美国杂志Motor Trend，
+包括32辆汽车的油耗和汽车设计和性能的
+10个方面。
+Format
+一个数据框，有11个变量的32个观察值。
+mpg 公里/加仑(美)
+cyl 汽缸数
+disp 排放量(立方寸)
+hp 总马力
+drat 后轴比
+wt 重量
+qsec 1/4公里用时
+vs 发动机
+am 变速器
+gear 前进齿轮数
+carb 汽化器
+
+pivot_longer {tidyr}
+宽数据转长数据
+Description
+pivot_longer()'延长'数据，增加行数减少列数。
+逆变换是pivot_wider()。
+vignette("pivot")中了解更多。
+Arguments
+data 转换的数据框
+cols 转换为长格式的列
+
+as {sf}
+强制简单特征转换为⁠Spatial*和Spatial*DataFrame对象。
+Description
+as_Spatial()允许sf和sfc转换为Spatial*DataFram和⁠Spatial*
+为了sp的兼容性。也可以使用as(x, "Spatial")。
+使用as(x, "sf")转换sp对象到sf或sfc。
+
+st_geometry {sf}
+从sf对象中得到、设置、替换、重命名几何结构。
+Arguments
+obj sf和sfc类对象
+
+st {sf}
+从数值向量、矩阵和列表中创建简单特征。
+Arguments
+x 对于st_point，长度为2, 3, 4的数值向量(或单行矩阵)。
+对于st_linestring和st_multipoint，由点成行的数值矩阵。
+对于st_polygon和st_multilinestring，由点成行的数值矩阵组成的列表。
+对于st_multipolygon，由点成行的数值矩阵组成的列表的列表。
+对于st_geometrycollection，(非几何集合)简单特征对象的列表。
+dim 字符，指示维度: "XY", "XYZ", "XYM", "XYZM"。
+只有三维点(可以是'XYZ'，也可以是'XYM)和空的
+几何图形才真正需要。见details。
+
+class {base}
+Description
+R拥有一个简单通用功能机制，可以用于面向对象的编程风格。
+方法分派发生基于通用函数的第一个参数的类。
+Arguments
+x 一个R对象。
+what, value 命名类的字符串向量。value也可以为NULL。
+which 逻辑影响返回值。见'Details'。
+Details
+这路我们描述了所谓的S3类和方法。对于S4类和方法，
+见下面的'Formal classes'。
+许多R对象有class属性，一个给出对象继承的类的名称的字符向量。
+oldClass和oldClass<-函数可以获得和设置属性。
+如果对象没有类属性，它有一个隐式类。
+
+st_bbox {sf}
+返回简单特征或简单特征集的边界。
+Arguments
+x bbox类对象
+obj 计算边界框的对象
+
+list {base}
+Lists – 通用虚线对
+Description
+构造、强制转换、检查两种类型的R列表的功能。
+Arguments
+... 可能命名的对象。
+x 强制转换或者测试的对象。
+Details
+R内部几乎所有列表都是通用向量，
+传统的虚线对列表仍然可用，
+但用户很少看见。(除非是函数的formals)
+list和pairlist的参数是value或tag = value。
+函数返回一个由参数组成列表或虚线对列表，
+每个值都被标记或未标记，取决于参数的
+指定方式。
+as.list试图强制转换它的参数为列表。
+对于函数，返回函数体和形式参数列表的
+连接。
+对于表达式，返回组成元素列表。
+as.list是通用的，as.vector方法可能被引用，
+对于非列表默认方法
+调用as.vector(mode = "list")。
+as.list将一个因子转换为单元素因子的列表，
+保留名称。
+其他属性可能被删除除非参数已经是一个列表
+或表达式。
+
+character {base}
+字符向量
+Description
+创建或测试"character"类型的对象。
+
+vector {base}
+向量 - 创建、强制转换等
+R中的一个向量或是一个原子向量，
+也就是一种原子类型。或是
+list或expression模式或是type。
+
+typeof {base}
+对象的类型
+Description
+typeof决定了任何对象在R内部的类型和
+储存模式。
+
+cars {datasets}
+Description
+本数据给出了汽车速度和刹车距离。
+请注意数据记录于1920年代。
+Format
+对两个变量50次的观察的数据框
+
+lapply {base}
+lapply返回与X长度的列表，里面的每个元素是
+对应X元素应用FUN的结果。
+
+plot.default {graphics}
+默认的散点图功能
+Description
+在激活的图形窗口画一个带有装饰例如轴和标题的散点图。
+Arguments
+x, y x和y参数给出了图中x, y的坐标。
+可以接受任何合理的坐标定义方式。
+细节见xy.coords功能。
+如果单独提供，它们必须有相同的长度。
+type 包含一个字符的字符串，
+给出了所需的图类型。
+Details
+常用的图形参数是:
+col 点和线的颜色
+可以指定多个颜色，以便都以可以给出其颜色。如果颜色比点少，
+它们就会在标准风格中回收。
+线条用第一种指定的颜色绘制。 
+
+vignette {utils}
+Description
+查看、列出或获取R包Vignettes的源代码。显示呈现在查看器中，并获取或编辑其源文件。
+Arguments
+topic 一个字符字符串给出查看的
+vignette的(基本)名称。
